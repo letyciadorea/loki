@@ -1,0 +1,116 @@
+<!DOCTYPE html>                    <!-- Declaração do tipo de documento HTML5 -->
+
+<html lang="pt-BR">                <!-- Início da estrutura HTML e define o idioma como Português do Brasil -->
+
+<head>                             <!-- Cabeçalho do documento (metadados) -->
+    
+    <meta charset="UTF-8">         <!-- Define a codificação de caracteres para suportar acentos e português -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <!-- Torna a página responsiva (se adapta ao tamanho da tela do celular) -->
+    
+    <title>Calculadora de IMC</title>   <!-- Título que aparece na aba do navegador -->
+    
+    <style>                        <!-- Início da seção de CSS (estilos) -->
+        body {
+            font-family: Arial, sans-serif;     <!-- Define a fonte padrão -->
+            background-color: #f0f2f5;          <!-- Cor de fundo da página -->
+            margin: 0;                          <!-- Remove margens padrão -->
+            padding: 0;
+            display: flex;                      <!-- Centraliza o conteúdo -->
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;                  <!-- Ocupa toda a altura da tela -->
+        }
+        .container {
+            background: white;                  <!-- Fundo branco da caixa -->
+            padding: 30px 25px;
+            border-radius: 15px;                <!-- Cantos arredondados -->
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);  <!-- Sombra suave -->
+            width: 100%;
+            max-width: 420px;                   <!-- Largura máxima -->
+        }
+        /* Outros estilos... (mantidos para funcionalidade) */
+    </style>
+    
+</head>
+
+<body>                             <!-- Início do corpo visível da página -->
+
+    <div class="container">        <!-- Caixa principal centralizada -->
+        
+        <h1>🧮 Calculadora de IMC</h1>   <!-- Título principal -->
+        
+        <!-- Campo de Peso -->
+        <label for="peso">Peso (em kg)</label>          <!-- Texto acima do campo -->
+        <input type="number" id="peso" placeholder="Ex: 70.5" step="0.1">  
+        <!-- Campo numérico para peso -->
+        
+        <!-- Campo de Altura -->
+        <label for="altura">Altura (em metros)</label>
+        <input type="number" id="altura" placeholder="Ex: 1.75" step="0.01">  
+        <!-- Campo numérico para altura -->
+        
+        <!-- Botão -->
+        <button onclick="calcularIMC()">Calcular IMC</button>  
+        <!-- Botão que chama a função JavaScript ao ser clicado -->
+        
+        <!-- Área onde aparece o resultado -->
+        <div id="resultado"></div>
+        
+    </div>
+
+    <script>                       <!-- Início do código JavaScript -->
+        
+        function calcularIMC() {   <!-- Declaração da função principal -->
+            
+            // Captura os valores digitados pelo usuário
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            const resultadoDiv = document.getElementById('resultado');
+
+            // Validação dos campos
+            if (!peso || !altura || altura <= 0) {
+                resultadoDiv.innerHTML = `<p style="color: red; font-weight: bold;">⚠️ Preencha o peso e a altura corretamente.</p>`;
+                return;            <!-- Interrompe a função se houver erro -->
+            }
+
+            // Cálculo do IMC
+            const imc = (peso / (altura * altura)).toFixed(2);
+
+            // Variáveis para classificação e cor
+            let classificacao = '';
+            let cor = '';
+
+            // Estrutura de decisão (if/else) para classificar o IMC
+            if (imc < 18.5) {
+                classificacao = "Abaixo do peso";
+                cor = "#e67e22";
+            } else if (imc < 25) {
+                classificacao = "Peso normal";
+                cor = "#27ae60";
+            } else if (imc < 30) {
+                classificacao = "Sobrepeso";
+                cor = "#f1c40f";
+            } else if (imc < 35) {
+                classificacao = "Obesidade Grau I";
+                cor = "#e67e22";
+            } else if (imc < 40) {
+                classificacao = "Obesidade Grau II";
+                cor = "#e74c3c";
+            } else {
+                classificacao = "Obesidade Grau III (Mórbida)";
+                cor = "#c0392b";
+            }
+
+            // Exibe o resultado na tela
+            resultadoDiv.innerHTML = `
+                <strong style="color: #2c3e50;">Seu IMC: ${imc}</strong><br>
+                <span style="color: ${cor}; font-size: 19px;">${classificacao}</span>
+            `;
+        }
+        
+    </script>
+
+</body>
+</html>                            <!-- Fim do documento HTML -->
