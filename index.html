@@ -11,27 +11,77 @@
     
     <title>Calculadora de IMC</title>   <!-- Título que aparece na aba do navegador -->
     
-    <style>                        <!-- Início da seção de CSS (estilos) -->
-        body {
-            font-family: Arial, sans-serif;     <!-- Define a fonte padrão -->
-            background-color: #f0f2f5;          <!-- Cor de fundo da página -->
-            margin: 0;                          <!-- Remove margens padrão -->
-            padding: 0;
-            display: flex;                      <!-- Centraliza o conteúdo -->
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;                  <!-- Ocupa toda a altura da tela -->
-        }
-        .container {
-            background: white;                  <!-- Fundo branco da caixa -->
-            padding: 30px 25px;
-            border-radius: 15px;                <!-- Cantos arredondados -->
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);  <!-- Sombra suave -->
-            width: 100%;
-            max-width: 420px;                   <!-- Largura máxima -->
-        }
-        /* Outros estilos... (mantidos para funcionalidade) */
-    </style>
+   <style>
+    /* ==================== ESTILOS GERAIS ==================== */
+    
+    body {
+        font-family: Arial, sans-serif;     /* Define a fonte padrão */
+        background-color: #f0f2f5;          /* Cor de fundo da página */
+        margin: 0;                          /* Remove margens externas */
+        padding: 0;
+        display: flex;                      /* Ativa o Flexbox */
+        justify-content: center;            /* Centraliza horizontalmente */
+        align-items: center;                /* Centraliza verticalmente */
+        min-height: 100vh;                  /* Faz a página ocupar toda a altura da tela */
+    }
+
+    .container {
+        background: white;                  /* Fundo branco da caixa */
+        padding: 40px 30px;                 /* Espaçamento interno (cima/baixo e laterais) */
+        border-radius: 15px;                /* Cantos arredondados */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1); /* Sombra suave */
+        width: 100%;                        /* Ocupa toda a largura disponível */
+        max-width: 420px;                   /* Largura máxima da caixa */
+        margin: 20px;                       /* Espaço externo da caixa */
+    }
+
+    h1 {
+        margin-bottom: 25px;                /* Espaço abaixo do título */
+        color: #2c3e50;
+    }
+
+    label {
+        display: block;                     /* Faz o label ficar em cima do input */
+        margin: 18px 0 8px;                 /* Espaçamento acima e abaixo */
+        text-align: left;
+        font-weight: bold;
+        color: #34495e;
+    }
+
+    input {
+        width: 100%;                        /* Input ocupa toda a largura */
+        padding: 12px;                      /* Espaçamento interno */
+        border: 1px solid #bdc3c7;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;             /* Evita problemas de largura */
+    }
+
+    button {
+        margin-top: 25px;                   /* Espaço acima do botão */
+        width: 100%;                        /* Botão ocupa toda a largura */
+        padding: 14px;
+        font-size: 17px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #2980b9;          /* Cor ao passar o mouse */
+    }
+
+    #resultado {
+        margin-top: 30px;                   /* Espaço acima do resultado */
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 18px;
+        min-height: 70px;                   /* Evita que pule de tamanho */
+        text-align: center;
+    }
+</style>
     
 </head>
 
@@ -62,7 +112,7 @@
 
     <script>                       <!-- Início do código JavaScript -->
         
-        function calcularIMC() {   <!-- Declaração da função principal -->
+        function calcularIMC() {   //Declaração da função principal//
             
             // Captura os valores digitados pelo usuário
             const peso = parseFloat(document.getElementById('peso').value);
@@ -72,7 +122,7 @@
             // Validação dos campos
             if (!peso || !altura || altura <= 0) {
                 resultadoDiv.innerHTML = `<p style="color: red; font-weight: bold;">⚠️ Preencha o peso e a altura corretamente.</p>`;
-                return;            <!-- Interrompe a função se houver erro -->
+                return;            //Interrompe a função se houver erro//
             }
 
             // Cálculo do IMC
